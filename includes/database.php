@@ -43,7 +43,7 @@ function db(): PDO
  * Bumped whenever install/migration work below has to run again on an
  * already-deployed database.
  */
-const SCHEMA_VERSION = 1;
+const SCHEMA_VERSION = 2;
 
 function initialize_database(PDO $pdo, string $driver): void
 {
@@ -156,10 +156,8 @@ function install_database_schema(PDO $pdo, string $driver): void
 function rotate_legacy_seed_passwords(PDO $pdo): void
 {
     $credentials = [
-        ['admin', '$2y$12$rDRViSEn9y.G/8FAK0uXG.W0z9LFjFh44d53ZQKS7tR8pGP8tx42a', '$2y$12$0s3HquvKz808ZxrSq68KMe8r31Wb6gqguJl1NuRfEsME0YgoE4ZRy'],
-        ['arben', '$2y$12$cVlewNw2jXxtPsRKGyPlT.mFH.T9MeB5k8Di2x0Eh7YZjtH9QoTCu', '$2y$12$P3BnmWfheKEgKxbQ6QnNiuYV2SxNxdIqiNytgh1IIrjWtT4.ZpuA.'],
-        ['dion', '$2y$12$2/b9ictBZPrzMF4GGq0c8e1BrefLitvCVJpON2YcYT5qUxi9yEuEq', '$2y$12$xEQ0aJ44Ggf84iZ.1tDYF.hrxCI6Ct7ITzHu2ZKDbDlDnyPYjLrXm'],
-        ['leo', '$2y$12$9EXcEZVA.khMtxAMZHMkmek9ndXjB7dhf4RWE1XMe1TbNpvEEtHs6', '$2y$12$.L3Ik.stTKq/CTWtknnV5OHW1zhNRmR6ABHvUVFUC81Mk4T55mVpG'],
+        ['admin', '$2y$12$rDRViSEn9y.G/8FAK0uXG.W0z9LFjFh44d53ZQKS7tR8pGP8tx42a', '$2y$12$wyc2ktoZe65cVZZvAumahOPORRZZH4ImqXXMsRbMUGfeAHyzMYP.m'],
+        ['admin', '$2y$12$0s3HquvKz808ZxrSq68KMe8r31Wb6gqguJl1NuRfEsME0YgoE4ZRy', '$2y$12$wyc2ktoZe65cVZZvAumahOPORRZZH4ImqXXMsRbMUGfeAHyzMYP.m'],
     ];
     $update = $pdo->prepare(
         'UPDATE users
@@ -219,31 +217,15 @@ function ensure_database_compatibility(PDO $pdo, string $driver): void
 
 function seed_mysql_database(PDO $pdo): void
 {
-    $barberCount = (int) $pdo->query('SELECT COUNT(*) FROM barbers')->fetchColumn();
     $serviceCount = (int) $pdo->query('SELECT COUNT(*) FROM services')->fetchColumn();
     $userCount = (int) $pdo->query('SELECT COUNT(*) FROM users')->fetchColumn();
 
-    if ($barberCount > 0 && $serviceCount > 0 && $userCount > 0) {
+    if ($serviceCount > 0 && $userCount > 0) {
         return;
     }
 
     $pdo->beginTransaction();
     try {
-        if ($barberCount === 0) {
-            $barber = $pdo->prepare(
-                'INSERT INTO barbers (name, title_sq, title_mk, title_en, bio_sq, bio_mk, bio_en, phone, email, experience_years, image_path, display_order)
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
-            );
-            $barbers = [
-                ['Arben Krasniqi', 'Mjeshtër i prerjeve klasike', 'Мајстор за класични фризури', 'Classic cuts specialist', 'Precizitet klasik, fade modern dhe kujdes i plotë për çdo detaj.', 'Класична прецизност, модерен fade и целосно внимание на секој детал.', 'Classic precision, modern fades and complete attention to every detail.', '+389 70 111 201', 'arben@gentlemanbarber.mk', 12, '/assets/images/barbers/arben-v2.jpg', 1],
-                ['Dion Mehmeti', 'Specialist i fade & stilimit', 'Специјалист за fade и стилизирање', 'Fade & styling specialist', 'Stil bashkëkohor, linja të pastra dhe këshillim sipas tipareve tuaja.', 'Современ стил, чисти линии и советување според вашите карактеристики.', 'Contemporary style, clean lines and advice tailored to your features.', '+389 70 111 202', 'dion@gentlemanbarber.mk', 8, '/assets/images/barbers/dion-v2.jpg', 2],
-                ['Leo Stojanov', 'Ekspert i mjekrës', 'Експерт за брада', 'Beard grooming expert', 'Formësim mjekre, ritual me peshqir të ngrohtë dhe përfundim premium.', 'Обликување брада, ритуал со топла крпа и премиум завршница.', 'Beard shaping, hot-towel ritual and a premium finish.', '+389 70 111 203', 'leo@gentlemanbarber.mk', 10, '/assets/images/barbers/leo-v2.jpg', 3],
-            ];
-            foreach ($barbers as $row) {
-                $barber->execute($row);
-            }
-        }
-
         if ($serviceCount === 0) {
             $service = $pdo->prepare(
                 'INSERT INTO services (name_sq, name_mk, name_en, description_sq, description_mk, description_en, price_cents, duration_minutes, display_order)
@@ -262,21 +244,7 @@ function seed_mysql_database(PDO $pdo): void
 
         if ($userCount === 0) {
             $user = $pdo->prepare('INSERT INTO users (barber_id, role, username, password_hash, full_name) VALUES (?, ?, ?, ?, ?)');
-            $user->execute([null, 'admin', 'admin', '$2y$12$0s3HquvKz808ZxrSq68KMe8r31Wb6gqguJl1NuRfEsME0YgoE4ZRy', 'Gentleman Admin']);
-
-            $findBarber = $pdo->prepare('SELECT id FROM barbers WHERE email = ? LIMIT 1');
-            $barberUsers = [
-                ['arben@gentlemanbarber.mk', 'arben', '$2y$12$P3BnmWfheKEgKxbQ6QnNiuYV2SxNxdIqiNytgh1IIrjWtT4.ZpuA.', 'Arben Krasniqi'],
-                ['dion@gentlemanbarber.mk', 'dion', '$2y$12$xEQ0aJ44Ggf84iZ.1tDYF.hrxCI6Ct7ITzHu2ZKDbDlDnyPYjLrXm', 'Dion Mehmeti'],
-                ['leo@gentlemanbarber.mk', 'leo', '$2y$12$.L3Ik.stTKq/CTWtknnV5OHW1zhNRmR6ABHvUVFUC81Mk4T55mVpG', 'Leo Stojanov'],
-            ];
-            foreach ($barberUsers as [$email, $username, $passwordHash, $fullName]) {
-                $findBarber->execute([$email]);
-                $barberId = $findBarber->fetchColumn();
-                if ($barberId !== false) {
-                    $user->execute([(int) $barberId, 'barber', $username, $passwordHash, $fullName]);
-                }
-            }
+            $user->execute([null, 'admin', 'admin', '$2y$12$wyc2ktoZe65cVZZvAumahOPORRZZH4ImqXXMsRbMUGfeAHyzMYP.m', 'Gentleman Admin']);
         }
         $pdo->commit();
     } catch (Throwable $exception) {

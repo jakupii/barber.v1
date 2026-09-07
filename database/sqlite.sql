@@ -107,16 +107,8 @@ CREATE INDEX IF NOT EXISTS idx_slots_booking ON appointment_slots(booking_id);
 CREATE INDEX IF NOT EXISTS idx_blocked_slots_date ON blocked_slots(blocked_date);
 CREATE INDEX IF NOT EXISTS idx_rate_limit_lookup ON rate_limit_events(action, identity_hash, created_at_epoch);
 
-INSERT OR IGNORE INTO barbers (id, name, title_sq, title_mk, title_en, bio_sq, bio_mk, bio_en, phone, email, experience_years, image_path, display_order) VALUES
-    (1, 'Arben Krasniqi', 'Mjeshtër i prerjeve klasike', 'Мајстор за класични фризури', 'Classic cuts specialist', 'Precizitet klasik, fade modern dhe kujdes i plotë për çdo detaj.', 'Класична прецизност, модерен fade и целосно внимание на секој детал.', 'Classic precision, modern fades and complete attention to every detail.', '+389 70 111 201', 'arben@gentlemanbarber.mk', 12, '/assets/images/barbers/arben-v2.jpg', 1),
-    (2, 'Dion Mehmeti', 'Specialist i fade & stilimit', 'Специјалист за fade и стилизирање', 'Fade & styling specialist', 'Stil bashkëkohor, linja të pastra dhe këshillim sipas tipareve tuaja.', 'Современ стил, чисти линии и советување според вашите карактеристики.', 'Contemporary style, clean lines and advice tailored to your features.', '+389 70 111 202', 'dion@gentlemanbarber.mk', 8, '/assets/images/barbers/dion-v2.jpg', 2),
-    (3, 'Leo Stojanov', 'Ekspert i mjekrës', 'Експерт за брада', 'Beard grooming expert', 'Formësim mjekre, ritual me peshqir të ngrohtë dhe përfundim premium.', 'Обликување брада, ритуал со топла крпа и премиум завршница.', 'Beard shaping, hot-towel ritual and a premium finish.', '+389 70 111 203', 'leo@gentlemanbarber.mk', 10, '/assets/images/barbers/leo-v2.jpg', 3);
-
 INSERT OR IGNORE INTO users (id, barber_id, role, username, password_hash, full_name) VALUES
-    (1, NULL, 'admin', 'admin', '$2y$12$0s3HquvKz808ZxrSq68KMe8r31Wb6gqguJl1NuRfEsME0YgoE4ZRy', 'Gentleman Admin'),
-    (2, 1, 'barber', 'arben', '$2y$12$P3BnmWfheKEgKxbQ6QnNiuYV2SxNxdIqiNytgh1IIrjWtT4.ZpuA.', 'Arben Krasniqi'),
-    (3, 2, 'barber', 'dion', '$2y$12$xEQ0aJ44Ggf84iZ.1tDYF.hrxCI6Ct7ITzHu2ZKDbDlDnyPYjLrXm', 'Dion Mehmeti'),
-    (4, 3, 'barber', 'leo', '$2y$12$.L3Ik.stTKq/CTWtknnV5OHW1zhNRmR6ABHvUVFUC81Mk4T55mVpG', 'Leo Stojanov');
+    (1, NULL, 'admin', 'admin', '$2y$12$wyc2ktoZe65cVZZvAumahOPORRZZH4ImqXXMsRbMUGfeAHyzMYP.m', 'Gentleman Admin');
 
 INSERT OR IGNORE INTO services (id, name_sq, name_mk, name_en, description_sq, description_mk, description_en, price_cents, duration_minutes, display_order) VALUES
     (1, 'Prerje Gentleman', 'Gentleman шишање', 'Gentleman Cut', 'Konsultë, prerje dhe stilim.', 'Консултација, шишање и стилизирање.', 'Consultation, cut and styling.', 1500, 60, 1),

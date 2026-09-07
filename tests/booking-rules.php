@@ -53,6 +53,12 @@ try {
     assert_booking_rule($schema !== false, 'Skema SQLite nuk u lexua.');
     $pdo->exec($schema);
 
+    // Skema nuk mban më berberë demo, ndaj testi krijon fixture-in e vet.
+    $pdo->exec(
+        "INSERT INTO barbers (id, name, title_sq, title_mk, title_en, display_order)
+         VALUES (1, 'Test Barber', 'Test', 'Test', 'Test', 1)"
+    );
+
     $insertBooking = $pdo->prepare(
         'INSERT INTO bookings
          (public_code, barber_id, service_id, access_token_hash, customer_name, phone, email,

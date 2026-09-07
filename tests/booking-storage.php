@@ -26,6 +26,12 @@ try {
     assert_test($schema !== false, 'Skema SQLite nuk u lexua.');
     $pdo->exec($schema);
 
+    // Skema nuk mban më berberë demo, ndaj testi krijon fixture-in e vet.
+    $pdo->exec(
+        "INSERT INTO barbers (id, name, title_sq, title_mk, title_en, display_order)
+         VALUES (1, 'Test Barber', 'Test', 'Test', 'Test', 1)"
+    );
+
     $formats = [
         '0038970880444',
         '+38970880444',
