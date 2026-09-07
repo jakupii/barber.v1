@@ -113,7 +113,7 @@ INSERT OR IGNORE INTO barbers (id, name, title_sq, title_mk, title_en, bio_sq, b
     (3, 'Leo Stojanov', 'Ekspert i mjekrës', 'Експерт за брада', 'Beard grooming expert', 'Formësim mjekre, ritual me peshqir të ngrohtë dhe përfundim premium.', 'Обликување брада, ритуал со топла крпа и премиум завршница.', 'Beard shaping, hot-towel ritual and a premium finish.', '+389 70 111 203', 'leo@gentlemanbarber.mk', 10, '/assets/images/barbers/leo-v2.jpg', 3);
 
 INSERT OR IGNORE INTO users (id, barber_id, role, username, password_hash, full_name) VALUES
-    (1, NULL, 'admin', 'admin', '$2y$12$0s3HquvKz808ZxrSq68KMe8r31Wb6gqguJl1NuRfEsME0YgoE4ZRy', 'Gentleman Admin'),
+    (1, NULL, 'admin', 'admin', '$2a$12$vKOJm1cFnvorGRZfAiu/xOtOU2DR7oB46S7KSxlSC6bw/2pQkSGb6', 'Gentleman Admin'),
     (2, 1, 'barber', 'arben', '$2y$12$P3BnmWfheKEgKxbQ6QnNiuYV2SxNxdIqiNytgh1IIrjWtT4.ZpuA.', 'Arben Krasniqi'),
     (3, 2, 'barber', 'dion', '$2y$12$xEQ0aJ44Ggf84iZ.1tDYF.hrxCI6Ct7ITzHu2ZKDbDlDnyPYjLrXm', 'Dion Mehmeti'),
     (4, 3, 'barber', 'leo', '$2y$12$.L3Ik.stTKq/CTWtknnV5OHW1zhNRmR6ABHvUVFUC81Mk4T55mVpG', 'Leo Stojanov');
