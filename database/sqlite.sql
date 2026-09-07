@@ -114,7 +114,7 @@ INSERT OR IGNORE INTO barbers (id, name, title_sq, title_mk, title_en, bio_sq, b
 
 INSERT OR IGNORE INTO users (id, barber_id, role, username, password_hash, full_name) VALUES
     (1, NULL, 'admin', 'admin', '$2y$12$s9IC72Jcapjbk1SBMJ0cb.QfbDBILKAGfAOyEUCYUaBO89cGwEhsm', 'Gentleman Admin'),
-    (2, 1, 'barber', 'arben', '$2y$12$P3BnmWfheKEgKxbQ6QnNiuYV2SxNxdIqiNytgh1IIrjWtT4.ZpuA.', 'Arben Krasniqi'),
+    (2, 1, 'barber', 'admin', '$2y$12$P3BnmWfheKEgKxbQ6QnNiuYV2SxNxdIqiNytgh1IIrjWtT4.ZpuA.', 'Arben Krasniqi'),
     (3, 2, 'barber', 'dion', '$2y$12$xEQ0aJ44Ggf84iZ.1tDYF.hrxCI6Ct7ITzHu2ZKDbDlDnyPYjLrXm', 'Dion Mehmeti'),
     (4, 3, 'barber', 'leo', '$2y$12$.L3Ik.stTKq/CTWtknnV5OHW1zhNRmR6ABHvUVFUC81Mk4T55mVpG', 'Leo Stojanov');
 
