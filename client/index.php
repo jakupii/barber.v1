@@ -91,7 +91,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex,nofollow">
-    <meta name="theme-color" content="#f7f3ea">
+    <meta name="theme-color" content="#f2f8fd" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#05080c" media="(prefers-color-scheme: dark)">
     <title>Rezervimet e mia — GentlemanBarber</title>
     <link rel="icon" type="image/png" href="<?= e(asset_url('/assets/images/favicon-v2.png')) ?>">
     <script src="<?= e(asset_url('/assets/js/theme.js')) ?>"></script>
