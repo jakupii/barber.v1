@@ -1,0 +1,16 @@
+.DS_Store
+*.log
+
+# Installation-specific secrets
+config/local.php
+
+# Runtime database files
+storage/*.sqlite
+storage/*.sqlite-*
+storage/*.sqlite3
+storage/*.sqlite3-*
+
+# Barber uploads are runtime data; keep only the folder guards.
+storage/uploads/barbers/*
+!storage/uploads/barbers/.gitkeep
+!storage/uploads/barbers/.htaccess
