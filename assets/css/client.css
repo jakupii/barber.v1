@@ -1,7 +1,7 @@
 /* ==========================================================================
-   Gentleman Barber — "Precizion": portali i klientit.
-   Një faqe që bën një punë të vetme — gjen rezervimin dhe tregon statusin.
-   Prandaj: pa dekor, të dhënat në një tabelë të lexueshme, statusi i qartë.
+   Gentleman Barber — portali i klientit.
+   Një faqe që bën një punë të vetme: gjen rezervimin dhe tregon statusin.
+   Kërkimi rri në një kartelë të vetme, të dhënat në një rrjet të lexueshëm.
    ========================================================================== */
 
 .client-page { min-height: 100vh; background: var(--bg); }
@@ -10,7 +10,8 @@
     position: relative;
     z-index: 5;
     border-bottom: 1px solid var(--line);
-    background: var(--bg);
+    background: var(--bg-blur);
+    backdrop-filter: blur(16px);
 }
 
 .client-header-inner {
@@ -86,20 +87,23 @@
     display: grid;
     place-items: center;
     border: 1px solid var(--line);
-    color: var(--muted);
+    border-radius: 999px;
+    color: var(--accent);
     font-family: var(--mono);
     font-size: 11px;
 }
 
 .privacy-note p { margin: 0; }
 
-/* Nuk ka orbë, nuk ka xham, nuk ka hije: kutia është një kuti. */
+/* Orbët dekorative të temës së vjetër nuk kanë vend këtu. */
 .client-orb { display: none; }
 
 .lookup-card {
-    padding: 32px;
-    border: 1px solid var(--line-heavy);
-    background: var(--bg);
+    padding: 34px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
 }
 
 .lookup-card::before { content: none; }
@@ -119,8 +123,9 @@
     flex: 0 0 auto;
     display: grid;
     place-items: center;
+    border-radius: 999px;
     background: var(--panel);
-    color: var(--on-panel);
+    color: var(--accent-bright);
     font-family: var(--mono);
     font-size: 13px;
     font-weight: 500;
@@ -138,6 +143,7 @@
     padding: 13px 15px;
     margin-bottom: 20px;
     border: 1px solid var(--danger-line);
+    border-radius: 3px;
     background: var(--danger-bg);
     color: var(--danger);
     font-size: 13px;
@@ -171,8 +177,9 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 6px 10px;
+    padding: 6px 11px;
     border: 1px solid currentColor;
+    border-radius: 999px;
     font-family: var(--mono);
     font-size: 10px;
     font-weight: 500;
@@ -180,7 +187,7 @@
     text-transform: uppercase;
 }
 
-.status-dot { width: 6px; height: 6px; background: currentColor; }
+.status-dot { width: 6px; height: 6px; border-radius: 999px; background: currentColor; }
 .status-badge.status-pending { background: var(--wait-bg); color: var(--wait); }
 .status-badge.status-accepted { background: var(--ok-bg); color: var(--ok); }
 .status-badge.status-rejected { background: var(--danger-bg); color: var(--danger); }
@@ -194,7 +201,8 @@
     display: grid;
     place-items: center;
     border: 1px solid var(--line);
-    color: var(--muted);
+    border-radius: 999px;
+    color: var(--accent);
     font-family: var(--mono);
     font-size: 16px;
 }
@@ -215,7 +223,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin: 0 0 22px;
+    overflow: hidden;
     border: 1px solid var(--line);
+    border-radius: 4px;
 }
 
 .booking-details > div {
@@ -242,6 +252,7 @@
     padding: 15px;
     margin-bottom: 18px;
     border: 1px solid currentColor;
+    border-radius: 3px;
     font-size: 13px;
 }
 
@@ -252,6 +263,7 @@
     display: grid;
     place-items: center;
     border: 1px solid currentColor;
+    border-radius: 999px;
     font-family: var(--mono);
     font-size: 12px;
 }
@@ -263,9 +275,9 @@
 
 .decision-note { padding: 12px 0; color: var(--muted); font-size: 13px; }
 .booking-results { display: grid; gap: 14px; }
-.booking-result-divider { width: 100%; height: 1px; margin: 8px 0 14px; border: 0; background: var(--line-heavy); }
+.booking-result-divider { width: 100%; height: 1px; margin: 8px 0 14px; border: 0; background: var(--line); }
 .booking-results > .button { margin-top: 2px; }
-.booking-results > .button-light { border: 1px solid var(--line-strong); background: transparent; color: var(--ink); }
+.booking-results > .button-light { border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); }
 .booking-results > .button-light:hover { background: var(--surface-2); border-color: var(--ink); color: var(--ink); }
 
 /* ------------------------------------------------------- Përshtatja -- */

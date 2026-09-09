@@ -1,7 +1,8 @@
 /* ==========================================================================
-   Gentleman Barber — "Precizion": hyrja e stafit dhe dashboard-i.
-   Një panel pune, jo një faqe reklame: rrjet i dukshëm, vija të vetme,
-   dhe çdo orë, datë e shifër me monospace në kolona që përputhen.
+   Gentleman Barber — hyrja e stafit dhe dashboard-i.
+   Një panel pune, jo faqe reklame: paneli i errët mban anën e markës,
+   përmbajtja rri në kartela të qeta, dhe çdo orë, datë e shifër shkruhet
+   me monospace në kolona që përputhen.
    ========================================================================== */
 
 /* ------------------------------------------------------------- Hyrja -- */
@@ -52,15 +53,15 @@
     line-height: 1.7;
 }
 
-/* Rrjeti i hollë në sfond: shenja matëse, jo zbukurim. */
+/* Rrjet shumë i hollë në sfond: strukturë, jo zbukurim. */
 .login-pattern {
     position: absolute;
     inset: 0;
     background-image:
         linear-gradient(to right, var(--panel-line) 1px, transparent 1px),
         linear-gradient(to bottom, var(--panel-line) 1px, transparent 1px);
-    background-size: 72px 72px;
-    opacity: .5;
+    background-size: 96px 96px;
+    opacity: .22;
     color: transparent;
     font-size: 0;
     pointer-events: none;
@@ -118,6 +119,7 @@
     gap: 11px;
     padding: 13px 15px;
     margin-bottom: 22px;
+    border-radius: 3px;
     font-size: 13px;
     font-weight: 500;
 }
@@ -129,6 +131,7 @@
     display: grid;
     place-items: center;
     border: 1px solid currentColor;
+    border-radius: 999px;
     font-family: var(--mono);
     font-size: 11px;
 }
@@ -179,7 +182,8 @@
     place-items: center;
     overflow: hidden;
     border: 1px solid var(--panel-line);
-    color: var(--on-panel);
+    border-radius: 999px;
+    color: var(--accent-bright);
     font-family: var(--mono);
     font-size: 13px;
 }
@@ -203,7 +207,8 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 10px 10px;
+    padding: 10px 12px;
+    border-radius: 3px;
     border-left: 2px solid transparent;
     color: var(--on-panel-muted);
     font-family: var(--mono);
@@ -260,7 +265,7 @@
     gap: 22px;
     padding-bottom: 22px;
     margin-bottom: 28px;
-    border-bottom: 1px solid var(--line-heavy);
+    border-bottom: 1px solid var(--line);
 }
 
 .dashboard-title p {
@@ -275,8 +280,9 @@
 .dashboard-title h1 { margin-bottom: 0; font-size: clamp(26px, 2.6vw, 36px); letter-spacing: -.035em; }
 
 .dashboard-date {
-    padding: 9px 12px;
+    padding: 9px 13px;
     border: 1px solid var(--line);
+    border-radius: 999px;
     color: var(--muted);
     font-family: var(--mono);
     font-size: 11px;
@@ -292,7 +298,11 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 0;
     margin-bottom: 28px;
+    overflow: hidden;
     border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
 }
 
 .stat-card {
@@ -333,9 +343,12 @@
 /* -------------------------------------------------------------- Blloqet -- */
 
 .dashboard-card {
+    overflow: hidden;
     margin-bottom: 26px;
     border: 1px solid var(--line);
-    background: var(--bg);
+    border-radius: 4px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
 }
 
 .dashboard-card-header {
@@ -361,8 +374,9 @@
 
 .filter-form select {
     min-height: 38px;
-    padding: 7px 30px 7px 10px;
+    padding: 7px 30px 7px 12px;
     border: 1px solid var(--line-strong);
+    border-radius: 999px;
     background: var(--bg);
     color: var(--ink);
     font-family: var(--mono);
@@ -375,7 +389,7 @@
 
 .booking-table th {
     padding: 12px 16px;
-    border-bottom: 1px solid var(--line-heavy);
+    border-bottom: 1px solid var(--line);
     color: var(--muted);
     font-family: var(--mono);
     font-size: 10px;
@@ -424,8 +438,9 @@
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    padding: 5px 9px;
+    padding: 5px 10px;
     border: 1px solid currentColor;
+    border-radius: 999px;
     font-family: var(--mono);
     font-size: 9px;
     font-weight: 500;
@@ -436,14 +451,15 @@
 .status-badge.status-pending { background: var(--wait-bg); color: var(--wait); }
 .status-badge.status-accepted { background: var(--ok-bg); color: var(--ok); }
 .status-badge.status-rejected { background: var(--danger-bg); color: var(--danger); }
-.status-badge .status-dot { width: 5px; height: 5px; background: currentColor; }
+.status-badge .status-dot { width: 5px; height: 5px; border-radius: 999px; background: currentColor; }
 
 .booking-actions { display: flex; gap: 6px; justify-content: flex-end; }
 
 .action-button {
     min-height: 32px;
-    padding: 6px 11px;
+    padding: 6px 13px;
     border: 1px solid var(--line-strong);
+    border-radius: 999px;
     background: transparent;
     color: var(--ink);
     font-family: var(--mono);
@@ -468,6 +484,7 @@
     place-items: center;
     margin: 0 auto 16px;
     border: 1px solid var(--line);
+    border-radius: 999px;
     font-size: 19px;
 }
 
@@ -510,6 +527,7 @@
     display: grid;
     place-items: center;
     border: 1px solid var(--line-strong);
+    border-radius: 999px;
     font-family: var(--mono);
     font-size: 15px;
 }
@@ -552,6 +570,7 @@
     flex: 0 0 auto;
     object-fit: cover;
     border: 1px solid var(--line);
+    border-radius: 4px;
     background: var(--surface-2);
 }
 
@@ -571,8 +590,9 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 12px;
+    padding: 14px;
     border: 1px dashed var(--line-strong);
+    border-radius: 4px;
 }
 
 .photo-preview {
@@ -581,6 +601,7 @@
     flex: 0 0 auto;
     object-fit: cover;
     border: 1px solid var(--line);
+    border-radius: 4px;
     background: var(--surface-2);
 }
 
@@ -618,8 +639,9 @@
     align-items: center;
     justify-content: space-between;
     gap: 14px;
-    padding: 10px 14px;
+    padding: 12px 16px;
     border: 1px solid var(--accent-line);
+    border-radius: 4px;
     background: var(--accent-soft);
 }
 
@@ -646,7 +668,7 @@
 }
 
 .schedule-legend span { display: inline-flex; align-items: center; gap: 7px; }
-.schedule-legend i { width: 10px; height: 10px; }
+.schedule-legend i { width: 10px; height: 10px; border-radius: 2px; }
 .legend-free { border: 1px solid var(--line-strong); background: var(--bg); }
 .legend-blocked { border: 1px solid var(--danger-line); background: var(--danger-bg); }
 .legend-booked { border: 1px solid var(--accent-line); background: var(--accent-soft); }
@@ -672,7 +694,7 @@
 .schedule-loading { grid-column: 1 / -1; padding: 48px 20px; color: var(--muted); font-family: var(--mono); font-size: 12px; text-align: center; }
 .schedule-error { color: var(--danger); }
 
-.schedule-day { min-width: 165px; border: 1px solid var(--line); }
+.schedule-day { min-width: 165px; overflow: hidden; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); }
 
 .schedule-day > header {
     display: flex;
@@ -689,8 +711,9 @@
 .schedule-day > header span { color: var(--muted); font-family: var(--mono); font-size: 10px; font-variant-numeric: tabular-nums; }
 
 .day-toggle {
-    padding: 5px 8px;
+    padding: 5px 9px;
     border: 1px solid var(--danger-line);
+    border-radius: 999px;
     background: var(--danger-bg);
     color: var(--danger);
     font-family: var(--mono);
@@ -773,7 +796,8 @@
         display: grid;
         place-items: center;
         border: 1px solid var(--line);
-        background: transparent;
+        border-radius: 999px;
+        background: var(--surface);
         color: var(--ink);
         cursor: pointer;
     }
