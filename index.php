@@ -14,12 +14,13 @@ $firstBarber = $barbers[0] ?? null;
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f2f8fd" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#05080c" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b0c0e" media="(prefers-color-scheme: dark)">
     <meta name="description" content="GentlemanBarber — zgjidh berberin, shërbimin dhe orën tënde online.">
     <title>GentlemanBarber — Stil i pastër. Rezervim i thjeshtë.</title>
     <link rel="icon" type="image/png" href="<?= e(asset_url('/assets/images/favicon-v2.png')) ?>">
     <script src="<?= e(asset_url('/assets/js/theme.js')) ?>"></script>
+    <link rel="stylesheet" href="<?= e(asset_url('/assets/css/fonts.css')) ?>">
     <link rel="stylesheet" href="<?= e(asset_url('/assets/css/style.css')) ?>">
     <script src="<?= e(asset_url('/assets/js/app.js')) ?>" defer></script>
 </head>
